@@ -85,9 +85,6 @@ public class ArrayLife {
         }
     }
 
-    private boolean getFromPackedLong(long packed, int position) {
-        return ((packed >>> position) & 1) == 1;
-    }
 
 
     public static void main(String[] args) throws Exception {

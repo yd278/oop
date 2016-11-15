@@ -9,17 +9,17 @@ public class PackedWorld extends World {
 
     public PackedWorld(String serial) throws PatternFormatException {
         super(serial);
-        if ((getWidth() > 8) || (getHeight() > 8)) throw new PatternFormatException(
-                getHeight()+"-by-"+getWidth()+" is too big for a packed long");
+        if (getWidth() * getHeight() > 64) throw new PatternFormatException(
+                getHeight() + "-by-" + getWidth() + " is too big for a packed long");
         getPattern().initialise(this);
     }
 
     @Override
     public void nextGenerationImpl() {
         long next = 0;
-        for (int i = 0; i < getWidth(); i++) {
-            for (int j = 0; j < getHeight(); j++) {
-                next = set(next, i * 8 + j, computeCell(i, j));
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                next = set(next, i * getWidth() + j, computeCell(j, i));
             }
         }
         mWorld = next;
@@ -44,14 +44,14 @@ public class PackedWorld extends World {
     public boolean getCell(int col, int row) {
         if ((col < 0) || (col > getWidth())) return false;
         if ((row < 0) || (row > getHeight())) return false;
-        return get(mWorld, row * 8 + col);
+        return get(mWorld, row * getWidth() + col);
     }
 
     @Override
     public void setCell(int col, int row, boolean val) {
         if ((col < 0) || (col > getWidth())) return;
         if ((row < 0) || (row > getHeight())) return;
-        mWorld = set(mWorld, row * 8 + col, val);
+        mWorld = set(mWorld, row * getWidth() + col, val);
 
     }
 }
