@@ -37,7 +37,7 @@ public abstract class World {
         incrementGenerationCount();
     }
 
-    protected abstract void  nextGenerationImpl();
+    protected abstract void nextGenerationImpl();
 
     public abstract boolean getCell(int col, int row);
 

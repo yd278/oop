@@ -23,7 +23,7 @@ public class GameOfLife {
     }
 
     public void print() {
-        System.out.println("- "+mWorld.getGenerationCount());
+        System.out.println("- " + mWorld.getGenerationCount());
         for (int row = 0; row < mWorld.getHeight(); row++) {
             for (int col = 0; col < mWorld.getWidth(); col++) {
                 System.out.print(mWorld.getCell(col, row) ? "#" : "_");
@@ -35,10 +35,10 @@ public class GameOfLife {
     public static void main(String args[]) throws IOException {
 
         try {
-            World w=null;
+            World w = null;
 
-            switch (args[0]){
-                case "--packed" :
+            switch (args[0]) {
+                case "--packed":
                     w = new PackedWorld(args[1]);
                     break;
                 case "--array":
@@ -50,8 +50,7 @@ public class GameOfLife {
             }
             GameOfLife gol = new GameOfLife(w);
             gol.play();
-        }
-        catch(PatternFormatException e) {
+        } catch (PatternFormatException e) {
             System.out.println(e.getMessage());
         }
     }

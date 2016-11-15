@@ -16,15 +16,16 @@ public class ArrayWorld extends World {
     @Override
     public void nextGenerationImpl() {
         boolean[][] next = new boolean[getHeight()][getWidth()];
-        for (int i = 0; i < getWidth(); i++) {
-            for (int j = 0; j < getHeight(); j++) {
-                next[i][j] = computeCell(i, j);
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                next[i][j] = computeCell(j, i);
             }
         }
-        for (int i = 0; i < getWidth(); i++) {
-            for (int j = 0; j < getHeight(); j++) {
-                setCell(i,j,next[i][j]);
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                setCell(j, i, next[i][j]);
             }
+
         }
         mWorld = next;
     }
